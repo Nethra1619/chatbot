@@ -4,6 +4,7 @@ This project is a simple chatbot interface built using HTML, CSS, and JavaScript
 
 ## Table of Contents
 
+- [Demo](#demo)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -11,6 +12,12 @@ This project is a simple chatbot interface built using HTML, CSS, and JavaScript
 - [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
+
+## Demo
+
+You can view a live demo of the Chatbot Interface on GitHub Pages:
+
+[Live Demo](https://nethra1619.github.io/chatbot/)
 
 ## Features
 
