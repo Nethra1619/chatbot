@@ -2,28 +2,23 @@
     "intents": [
         {
             "tag": "greeting",
-            "patterns": ["hello", "hi", "good morning", "good afternoon"],
-            "responses": ["Hello! How can I assist you today?", "Hi there! What can I do for you?", "Greetings! How can I help?"]
+            "patterns": ["hello", "hi", "hey", "good morning", "good evening"],
+            "responses": ["Hello! How can I assist you today?", "Hi there! What can I do for you?", "Hey! Need help with something?"]
         },
         {
-            "tag": "farewell",
+            "tag": "goodbye",
             "patterns": ["bye", "goodbye", "see you later", "farewell"],
             "responses": ["Goodbye! Have a great day!", "See you later! Take care!", "Farewell!"]
         },
         {
-            "tag": "name",
-            "patterns": ["what is your name?", "who are you?", "can you tell me your name?"],
-            "responses": ["I am a chatbot created to assist you.", "You can call me Chatbot!", "I'm here to help you with your questions."]
-        },
-        {
-            "tag": "joke",
-            "patterns": ["tell me a joke", "make me laugh", "joke"],
-            "responses": ["Why don't programmers like nature? It has too many bugs!", "Why do Java developers wear glasses? Because they don't C#!"]
+            "tag": "thanks",
+            "patterns": ["thank you", "thanks", "thanks a lot"],
+            "responses": ["You're welcome!", "No problem!", "My pleasure!"]
         },
         {
             "tag": "default",
             "patterns": [],
-            "responses": ["Sorry, I didn't understand that. Can you please rephrase?"]
+            "responses": ["Sorry, I didn't understand that.", "Can you please rephrase?", "I'm not sure what you mean."]
         }
     ]
 }
