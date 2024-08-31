@@ -1,4 +1,4 @@
-body {
+ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
@@ -7,46 +7,61 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #343541;
 }
 
 .chat-container {
     width: 400px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    max-width: 100%;
+    background-color: #40414f;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .chat-header {
-    background-color: #007bff;
+    background-color: #202123;
     color: white;
-    padding: 15px;
+    padding: 10px;
     text-align: center;
+    border-bottom: 1px solid #343541;
 }
 
 .chat-box {
+    flex: 1;
     padding: 15px;
     height: 300px;
     overflow-y: auto;
-    border-bottom: 1px solid #ccc;
+    background-color: #343541;
+    color: white;
+    border-bottom: 1px solid #343541;
 }
 
 .chat-input {
     display: flex;
     padding: 10px;
-    background-color: #f9f9f9;
+    background-color: #40414f;
+    border-top: 1px solid #343541;
 }
 
 .chat-input input {
-    width: 100%;
+    flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #575757;
     border-radius: 5px;
+    background-color: #575757;
+    color: white;
     margin-right: 10px;
 }
 
+.chat-input input::placeholder {
+    color: #ccc;
+}
+
 .chat-input button {
-    background-color: #007bff;
+    background-color: #19c37d;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -55,24 +70,35 @@ body {
 }
 
 .chat-input button:hover {
-    background-color: #0056b3;
+    background-color: #14a366;
 }
 
 .message {
     margin-bottom: 10px;
     padding: 10px;
-    border-radius: 10px;
-    max-width: 70%;
+    border-radius: 8px;
+    max-width: 80%;
+    display: inline-block;
+    word-wrap: break-word;
 }
 
 .message.user {
-    background-color: #007bff;
+    background-color: #1a7f6e;
     color: white;
     align-self: flex-end;
 }
 
 .message.bot {
-    background-color: #f1f1f1;
-    color: black;
+    background-color: #40414f;
+    color: white;
     align-self: flex-start;
+}
+
+#chat-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 4px;
 }
