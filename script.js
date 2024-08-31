@@ -2,12 +2,7 @@ let intents = [];
 
 // Load intents.json file
 fetch('intents.json')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
+    .then(response => response.json())
     .then(data => {
         intents = data.intents;
     })
