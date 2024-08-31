@@ -1,53 +1,70 @@
 let intents = [];
 
-// Fetch the intents from the JSON file
+// Load intents.json file
 fetch('intents.json')
     .then(response => response.json())
     .then(data => {
         intents = data.intents;
     })
-    .catch(error => console.error('Error fetching intents:', error));
+    .catch(error => console.error('Error loading intents:', error));
 
-function sendMessage() {
-    const userInput = document.getElementById('user-input').value;
-    if (userInput.trim() !== "") {
-        displayMessage(userInput, 'user');
-        getBotResponse(userInput);
-        document.getElementById('user-input').value = '';
+// Toggle Chat Visibility
+function toggleChat() {
+    const chatContainer = document.getElementById('chat-container');
+    const chatIcon = document.getElementById('chat-icon');
+
+    if (chatContainer.style.display === 'none') {
+        chatContainer.style.display = 'flex';
+        chatIcon.style.display = 'none';
+    } else {
+        chatContainer.style.display = 'none';
+        chatIcon.style.display = 'flex';
     }
 }
 
+// Send Message
+function sendMessage() {
+    const userInput = document.getElementById('user-input');
+    const message = userInput.value.trim();
+
+    if (message) {
+        displayMessage(message, 'user');
+        userInput.value = '';
+
+        // Generate and display bot response
+        setTimeout(() => {
+            const botResponse = getBotResponse(message);
+            displayMessage(botResponse, 'bot');
+        }, 500);  // Simulate delay
+    }
+}
+
+// Display Message in Chat
 function displayMessage(message, sender) {
     const chatBox = document.getElementById('chat-box');
     const messageElement = document.createElement('div');
-    messageElement.classList.add('message', sender);
+    messageElement.className = `message ${sender}`;
     messageElement.textContent = message;
+
     chatBox.appendChild(messageElement);
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-function getBotResponse(userInput) {
-    const lowerInput = userInput.toLowerCase();
-    let botResponse = null;
+// Get Bot Response from intents.json
+function getBotResponse(message) {
+    const normalizedMessage = message.toLowerCase().replace(/[^\w\s]/gi, '');
 
-    // Match user input to an intent
-    for (let intent of intents) {
-        for (let pattern of intent.patterns) {
-            if (lowerInput.includes(pattern)) {
-                botResponse = intent.responses[Math.floor(Math.random() * intent.responses.length)];
-                break;
+    for (const intent of intents) {
+        for (const pattern of intent.patterns) {
+            if (normalizedMessage.includes(pattern.toLowerCase())) {
+                const responses = intent.responses;
+                return responses[Math.floor(Math.random() * responses.length)];
             }
         }
-        if (botResponse) break;
     }
 
-    // If no intent matched, use the default response
-    if (!botResponse) {
-        const defaultIntent = intents.find(intent => intent.tag === "default");
-        botResponse = defaultIntent.responses[Math.floor(Math.random() * defaultIntent.responses.length)];
-    }
-
-    setTimeout(() => {
-        displayMessage(botResponse, 'bot');
-    }, 500); // Simulate a short delay for bot response
+    // If no match is found, return default response
+    const defaultIntent = intents.find(intent => intent.tag === 'default');
+    const defaultResponses = defaultIntent.responses;
+    return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
 }
